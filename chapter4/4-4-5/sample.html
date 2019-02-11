@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js SPAのサンプルアプリケーション</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+</head>
+<body>
+  <div id="app">
+    <nav>
+      <router-link to="/top">トップページ</router-link>
+      <router-link to="/users">ユーザー一覧ページ</router-link>
+      <router-link to="/users/new?redirect=true">新規ユーザー登録</router-link>
+      <router-link to="/login" v-show="!auth.loggedIn()">ログイン</router-link>
+      <router-link to="/logout" v-show="auth.loggedIn()">ログアウト</router-link>
+    </nav>
+    <router-view></router-view>
+  </div>
+
+  <script type="text/x-template" id="user-list">
+    <div>
+      <div class="loading" v-if="loading">読み込み中…</div>
+      <div v-if="error" class="error">{{ error }}</div>
+      <div v-for="user in users" v-bind:key="user.id">
+        <h2>{{ user.name }}</h2>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-template" id="user-detail">
+    <div>
+      <div class="loading" v-if="loading">読み込み中…</div>
+      <div v-if="error" class="error">{{ error }}</div>
+      <div v-if="user">
+        <h2>{{ user.name }}</h2>
+        <p>{{ user.description }}</p>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-template" id="user-create">
+    <div>
+      <div class="sending" v-if="sending">Sending…</div>
+      <div>
+        <h2>新規ユーザー作成</h2>
+        <div>
+          <label>名前:</label>
+          <input type="text" v-model="user.name">
+        </div>
+        <div>
+          <label>説明文:</label>
+          <textarea v-model="user.description"></textarea>
+        </div>
+        <div v-if="error" class="error">{{ error }}</div>
+        <div><input type="button" v-on:click="createUser" value="送信"></div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-template" id="login">
+    <div>
+      <h2>Login</h2>
+      <p v-if="$route.query.redirect">ログインしてください</p>
+      <form v-on:submit.prevent="login">
+        <p>
+          <label><input v-model="email" placeholder="email"></label>
+          <label><input type="password" v-model="pass" placeholder="password"></label>
+        </p>
+        <p><button type="submit">ログイン</button></p>
+        <p v-if="error" class="error">ログインに失敗しました。</p>
+      </form>
+    </div>
+  </script>
+
+  <script src="app.vue"></script>
+</body>

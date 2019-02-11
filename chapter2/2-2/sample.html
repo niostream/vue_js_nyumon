@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>はじめてのVue.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <p>{{ message }}</p>
+  </div>
+  <script>
+    console.assert(typeof Vue !== 'undefined');
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'こんにちは'
+      }
+    })
+  </script>
+</body>

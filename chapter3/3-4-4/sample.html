@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>はじめてのVue.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+</head>
+<body>
+  <div id="login-example">
+    <user-login></user-login>
+  </div>
+
+  <script type="text/x-template" id="login-template">
+    <div id="login-template">
+      <div>
+        <input type="text" placeholder="ログインID" v-model="userId">
+      </div>
+      <div>
+        <input type="password" placeholder="パスワード" v-model="password">
+      </div>
+      <button v-on:click="login">ログイン</button>
+    </div>
+  </script>
+
+  <script src="app.vue"></script>
+</body>

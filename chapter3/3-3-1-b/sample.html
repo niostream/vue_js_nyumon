@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>はじめてのVue.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+</head>
+<body>
+  <div id="fruits-component">
+    <ol>
+      <fruits-item-name v-for="fruit in fruitsItems" v-bind:key="fruit.name" v-bind:fruits-item="fruit"></fruits-item-name>
+    </ol>
+  </div>
+  <script src="app.vue"></script>
+</body>
